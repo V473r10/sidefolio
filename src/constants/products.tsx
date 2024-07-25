@@ -1,132 +1,34 @@
 export const products = [
   {
-    href: "https://aceternity.com",
-    title: "Aceternity",
+    href: "https://codedicated.com",
+    title: "Codedicated",
     description:
-      "A design and development studio that focuses on building quality apps.",
-    thumbnail: "/images/sidefolio-aceternity.png",
+      "Codedicated is a company dedicated to bridging the gap between tech and non-tech people.",
+    thumbnail: "/images/projects/codedicated/01.jpeg",
     images: [
-      "/images/sidefolio-aceternity.png",
-      "/images/sidefolio-aceternity-2.png",
+      "/images/projects/codedicated/01.jpeg",
+      "/images/projects/codedicated/02.jpeg",
     ],
-    stack: ["Nextjs", "Tailwindcss"],
-    slug: "aceternity",
+    stack: ["Nextjs", "Vercel", "Supabase"],
+    slug: "codedicated",
     content: (
       <div>
         <p>
-          Sit eiusmod ex mollit sit quis ad deserunt. Sint aliqua aliqua ullamco
-          dolore nulla amet tempor sunt est ipsum. Dolor laborum eiusmod
-          cupidatat consectetur velit ipsum. Deserunt nisi in culpa laboris
-          cupidatat elit velit aute mollit nisi. Officia ad exercitation laboris
-          non cupidatat duis esse velit ut culpa et.{" "}
+            Codedicated is a company dedicated to bridging the gap between tech
+            and non-tech people. We are a team of software developers that
+            specialize in building web applications, mobile applications, and
+            websites. We work with clients from all over the world to help them
+            turn their ideas into reality. Our goal is to make technology
+            accessible to everyone and to help our clients succeed in the digital
+            world.
         </p>
         <p>
-          Exercitation pariatur enim occaecat adipisicing nostrud adipisicing
-          Lorem tempor ullamco exercitation quis et dolor sint. Adipisicing sunt
-          sit aute fugiat incididunt nostrud consequat proident fugiat id.
-          Officia aliquip laborum labore eu culpa dolor reprehenderit eu ex enim
-          reprehenderit. Cillum Lorem veniam eu magna exercitation.
-          Reprehenderit adipisicing minim et officia enim et veniam Lorem
-          excepteur velit adipisicing et Lorem magna.
-        </p>{" "}
-      </div>
-    ),
-  },
-  {
-    href: "https://algochurn.com",
-    title: "Algochurn",
-    description:
-      "Practice for technical interviews with hands on coding challenges.",
-    thumbnail: "/images/sidefolio-algochurn.png",
-    images: [
-      "/images/sidefolio-algochurn.png",
-      "/images/sidefolio-algochurn-2.png",
-    ],
-    stack: ["Nextjs", "Tailwindcss"],
-    slug: "algochurn",
-    content: (
-      <div>
-        <p>
-          Sit eiusmod ex mollit sit quis ad deserunt. Sint aliqua aliqua ullamco
-          dolore nulla amet tempor sunt est ipsum. Dolor laborum eiusmod
-          cupidatat consectetur velit ipsum. Deserunt nisi in culpa laboris
-          cupidatat elit velit aute mollit nisi. Officia ad exercitation laboris
-          non cupidatat duis esse velit ut culpa et.{" "}
-        </p>
-        <p>
-          Exercitation pariatur enim occaecat adipisicing nostrud adipisicing
-          Lorem tempor ullamco exercitation quis et dolor sint. Adipisicing sunt
-          sit aute fugiat incididunt nostrud consequat proident fugiat id.
-          Officia aliquip laborum labore eu culpa dolor reprehenderit eu ex enim
-          reprehenderit. Cillum Lorem veniam eu magna exercitation.
-          Reprehenderit adipisicing minim et officia enim et veniam Lorem
-          excepteur velit adipisicing et Lorem magna.
-        </p>{" "}
-      </div>
-    ),
-  },
-  {
-    href: "https://gomoonbeam.com",
-    title: "Moonbeam",
-    description:
-      "Never write from scratch again with Moonbeam, your AI first writing tool",
-    thumbnail: "/images/sidefolio-moonbeam.png",
-    images: [
-      "/images/sidefolio-moonbeam.png",
-      "/images/sidefolio-moonbeam-2.png",
-    ],
-    stack: ["Nextjs", "Tailwindcss"],
-    slug: "moonbeam",
-    content: (
-      <div>
-        <p>
-          Sit eiusmod ex mollit sit quis ad deserunt. Sint aliqua aliqua ullamco
-          dolore nulla amet tempor sunt est ipsum. Dolor laborum eiusmod
-          cupidatat consectetur velit ipsum. Deserunt nisi in culpa laboris
-          cupidatat elit velit aute mollit nisi. Officia ad exercitation laboris
-          non cupidatat duis esse velit ut culpa et.{" "}
-        </p>
-        <p>
-          Exercitation pariatur enim occaecat adipisicing nostrud adipisicing
-          Lorem tempor ullamco exercitation quis et dolor sint. Adipisicing sunt
-          sit aute fugiat incididunt nostrud consequat proident fugiat id.
-          Officia aliquip laborum labore eu culpa dolor reprehenderit eu ex enim
-          reprehenderit. Cillum Lorem veniam eu magna exercitation.
-          Reprehenderit adipisicing minim et officia enim et veniam Lorem
-          excepteur velit adipisicing et Lorem magna.
-        </p>{" "}
-      </div>
-    ),
-  },
-  {
-    href: "https://tailwindmasterkit.com",
-    title: "Tailwind Master Kit",
-    description:
-      "A beautiful and comprehensive Tailwind CSS components library for building modern websites and applications.",
-    thumbnail: "/images/sidefolio-tailwindmasterkit.png",
-    images: [
-      "/images/sidefolio-tailwindmasterkit.png",
-      "/images/sidefolio-tailwindmasterkit-2.png",
-    ],
-    stack: ["Nextjs", "Tailwindcss"],
-    slug: "tailwindmasterkit",
-    content: (
-      <div>
-        <p>
-          Sit eiusmod ex mollit sit quis ad deserunt. Sint aliqua aliqua ullamco
-          dolore nulla amet tempor sunt est ipsum. Dolor laborum eiusmod
-          cupidatat consectetur velit ipsum. Deserunt nisi in culpa laboris
-          cupidatat elit velit aute mollit nisi. Officia ad exercitation laboris
-          non cupidatat duis esse velit ut culpa et.{" "}
-        </p>
-        <p>
-          Exercitation pariatur enim occaecat adipisicing nostrud adipisicing
-          Lorem tempor ullamco exercitation quis et dolor sint. Adipisicing sunt
-          sit aute fugiat incididunt nostrud consequat proident fugiat id.
-          Officia aliquip laborum labore eu culpa dolor reprehenderit eu ex enim
-          reprehenderit. Cillum Lorem veniam eu magna exercitation.
-          Reprehenderit adipisicing minim et officia enim et veniam Lorem
-          excepteur velit adipisicing et Lorem magna.
+            We use the latest technologies and tools to build high-quality
+            software that is fast, secure, and reliable. Our team is passionate
+            about what we do, and we are committed to delivering exceptional
+            results for our clients. Whether you need a simple website, a
+            custom-built web application, or a mobile app, we have the skills and
+            expertise to bring your vision to life.
         </p>{" "}
       </div>
     ),
