@@ -1,23 +1,28 @@
 "use client";
 import {Paragraph} from "@/components/Paragraph";
 import Image from "next/image";
-
 import {motion} from "framer-motion";
 import Link from "next/link";
+//region Import Images
+import tapesImg from "@public/images/about-me/tapes.jpg";
+import fatherImg from "@public/images/about-me/father.jpg";
+import cinemaImg from "@public/images/about-me/cinema.jpg";
+import psImg from "@public/images/about-me/ps.jpg";
+//endregion
 
 export default function About() {
     const images = [
-        "/images/about-me/tapes.jpg",
-        "/images/about-me/father.jpg",
-        "/images/about-me/cinema.jpg",
-        "/images/about-me/ps.jpg  ",
+        tapesImg,
+        fatherImg,
+        cinemaImg,
+        psImg,
     ];
     return (
         <div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-10 my-10">
                 {images.map((image, index) => (
                     <motion.div
-                        key={image}
+                        key={image.src}
                         initial={{
                             opacity: 0,
                             y: -50,
@@ -33,8 +38,6 @@ export default function About() {
                         <Image
                             unoptimized
                             src={image}
-                            width={200}
-                            height={400}
                             alt="about"
                             className="rounded-md object-cover transform rotate-3 shadow-xl block w-full h-40 md:h-60 hover:rotate-0 transition duration-200"
                         />
