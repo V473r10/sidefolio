@@ -12,7 +12,7 @@ import About from "@/components/About";
 export const metadata: Metadata = {
   title: "About | Facundo Valerio",
   description:
-    "Facundo Valerio is the founder of Codedicated a company dedicated to bridge the gap between tech and non-techs",
+    "Facundo Valerio is the founder of Codedicated a company dedicated to bridging the gap between tech and non-tech people",
 };
 
 export default function AboutPage() {
