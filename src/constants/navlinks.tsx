@@ -27,9 +27,4 @@ export const navlinks = [
     label: "Articles",
     icon: IconArticle,
   },
-  {
-    href: "/contact",
-    label: "Contact",
-    icon: IconMail,
-  },
 ];
