@@ -1,13 +1,9 @@
 "use client";
-import { timeline } from "@/constants/timeline";
+import {timeline} from "@/constants/timeline";
 import React from "react";
-import { Paragraph } from "./Paragraph";
-import { Heading } from "./Heading";
-import {
-  IconCheck,
-  IconCheckbox,
-  IconCircleCheckFilled,
-} from "@tabler/icons-react";
+import {Paragraph} from "./Paragraph";
+import {Heading} from "./Heading";
+import {IconCircleCheckFilled,} from "@tabler/icons-react";
 
 export const WorkHistory = () => {
   return (
@@ -17,7 +13,8 @@ export const WorkHistory = () => {
           className="flex md:flex-row flex-col space-y-10 md:space-y-0 space-x-10 my-20 relative"
           key={`timeline-${index}`}
         >
-          <Paragraph className="w-40">{item.date}</Paragraph>
+
+          <Paragraph className={item.date.includes('Present') ? 'w-40' : 'w-32'}>{item.date}</Paragraph>
           <div>
             <Heading
               as="h5"
@@ -32,7 +29,7 @@ export const WorkHistory = () => {
               {item.description}
             </Paragraph>
 
-            {item.responsibilities.map((responsibility, index) => (
+            {item.responsibilities && item.responsibilities.map((responsibility, index) => (
               <Step key={responsibility}>{responsibility}</Step>
             ))}
           </div>

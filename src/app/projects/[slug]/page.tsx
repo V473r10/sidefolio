@@ -1,14 +1,9 @@
-import { Container } from "@/components/Container";
-import { Heading } from "@/components/Heading";
-import { Highlight } from "@/components/Highlight";
-import { Paragraph } from "@/components/Paragraph";
-import { SingleProduct } from "@/components/Product";
-import { Products } from "@/components/Products";
-import { products } from "@/constants/products";
-import { Product } from "@/types/products";
-import { Metadata } from "next";
-import Image from "next/image";
-import { redirect } from "next/navigation";
+import {Container} from "@/components/Container";
+import {SingleProduct} from "@/components/Product";
+import {products} from "@/constants/products";
+import {Product} from "@/types/products";
+import {Metadata} from "next";
+import {redirect} from "next/navigation";
 
 type Props = {
   params: { slug: string };

@@ -1,11 +1,10 @@
-import { Container } from "@/components/Container";
-import { Heading } from "@/components/Heading";
-import { Highlight } from "@/components/Highlight";
-import { Paragraph } from "@/components/Paragraph";
-import { Products } from "@/components/Products";
-import { getAllBlogs } from "../../../lib/getAllBlogs";
-import { Blogs } from "@/components/Blogs";
-import { Metadata } from "next";
+import {Container} from "@/components/Container";
+import {Heading} from "@/components/Heading";
+import {Highlight} from "@/components/Highlight";
+import {Paragraph} from "@/components/Paragraph";
+import {getAllBlogs} from "../../../lib/getAllBlogs";
+import {Blogs} from "@/components/Blogs";
+import {Metadata} from "next";
 
 export const metadata: Metadata = {
   title: "Blogs | Facundo Valerio",
