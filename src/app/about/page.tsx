@@ -10,9 +10,9 @@ import { motion } from "framer-motion";
 import About from "@/components/About";
 
 export const metadata: Metadata = {
-  title: "About | John Doe",
+  title: "About | Facundo Valerio",
   description:
-    "John Doe is a developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
+    "Facundo Valerio is the founder of Codedicated a company dedicated to bridge the gap between tech and non-techs",
 };
 
 export default function AboutPage() {
