@@ -18,7 +18,7 @@ export default (props) => <BlogLayout meta={meta} {...props} />;
 We will use Shadcn/ui for the UI components and create mostly client-side components. <br/>
 We will look at server-side components another time.
 
-We will use pnpm as packer. Make sure you have at least:
+We will use pnpm as package manager. Make sure you have at least:
 
 - Node.js 22 or later
 - pnpm 9 or later
@@ -76,7 +76,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className={cn(
-            "min-h-screen bg-background font-sans antialiased",
+            "min-h-screen bg-background font-sans a   ntialiased",
             fontSans.variable
         )}>
         {children}
@@ -90,9 +90,9 @@ export default function RootLayout({
 
 As a last step in the configuration, we must extend configure **`theme.extend.fontFamily`** in **`tailwind.config.js`**.
 
-The final contents of **`tailwind.config.js`** should be as follows:
+The final contents of **`tailwind.config.ts`** should be as follows:
 
-<CodeWindow title="tailwind.config.js">
+<CodeWindow title="tailwind.config.ts">
 
 ```JS
 const { fontFamily } = require("tailwindcss/defaultTheme")
@@ -105,7 +105,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+	],    
   prefix: "",
   theme: {
     container: {
@@ -293,7 +293,7 @@ const AuthPage = () => {
                             Login
                         </Button>
                     </div>
-                    <div className="mt-4 text-center text-sm">
+                    <div className="mt-4 text-center te xt-sm">
                         If you don&apos;t have an account, it will be created automatically.
                     </div>
                 </CardContent>
@@ -303,11 +303,11 @@ const AuthPage = () => {
 }
 
 export default AuthPage;
-```
+``` 
 
 </CodeWindow>
 
-In the browser you should see something like this:
+In the browser, on https://localhost:3000/auth you should see something like this:
 
 ![Login form](/images/blog/nextjs-supabase/shadcn-ui-login.jpg)
 
@@ -344,17 +344,17 @@ Then click on `CREATE`.
 
 Specify a name for the App and select your email as support email and Developer contact information at the bottom of the page.
 
-En Authorized domains haz click en `ADD DOMAIN` e ingresa la URL del proyecto de Supabase.
+In Authorized domains click on `ADD DOMAIN` and enter the Supabase project URL.
 
-Lo encuentras en Project Settings → API y tiene el formato `<PROJECT_ID>.supabase.co`
+You can find it in Project Settings → API and it has the format `<PROJECT_ID>.supabase.co`.
 
-> No debes indicar el protocolo (`https://`)
+> You should not indicate the protocol (https://)
 
 ![Google Cloud Consent](/images/blog/nextjs-supabase/supabase-ready.jpg)
 
 Then click on `SAVE AND CONTINUE`.
 
-Haz click en `ADD OR REMOVE SCOPES` y selecciona los primeros tres
+Click on `ADD OR REMOVE SCOPES` and select the first three
 
 - …/auth/userinfo.email
 - …/auth/userinfo.profile
@@ -363,3 +363,211 @@ Haz click en `ADD OR REMOVE SCOPES` y selecciona los primeros tres
 ![Google Cloud Consent](/images/blog/nextjs-supabase/google-scopes.jpg)
 
 Then click on `SAVE AND CONTINUE`.
+
+Go to https://console.cloud.google.com/apis/credentials
+
+Click on `CREATE CREDENTIALS` and choose `OAuth client ID.`.
+
+Under Application Type select `Web Application`.
+
+Specify a client name (only identifies the OAuth client will not be shown to the user).
+
+In `Authorized JavaScripts origins` you must indicate the URL of your application. Start by registering your [localhost](http://localhost).
+
+In Authorized Redirect URIs you will register the Callback URL of supabase `<PROJECT_ID>.supabase.co/auth/v1/callback`.
+
+![Google OAuth Client Created](/images/blog/nextjs-supabase/google-oauth-client-created.png)
+
+You must copy the Client ID and Client secret and enter them in the Google section of Supabase.
+
+![Google Supabase Completed](/images/blog/nextjs-supabase/google-supabase-completed.png )
+
+Click on `Save`.
+
+Google is ready to go! We go to GitHub and at the end we implement the behavior of both options in the app.
+
+## GitHub
+
+From the GitHub section in Supabase, copy the Callback URL ( it is the same one we use for Google ).
+
+
+![GitHub New App](/images/blog/nextjs-supabase/gh-supabase.png)
+> Leave this tab open, we'll be right back.
+
+
+
+Let's create the GitHub app, just like we did with Google.
+
+Go to https://github.com/settings/applications/new
+
+![GitHub New App](/images/blog/nextjs-supabase/gh-new-app.png)
+
+Specify the data of your new App and click on `Register application`.
+
+Next you will see the general page of your app with the Client Id, and you will see a button `Generate a new client secret`, click on it.
+
+Register the Client Id and the new secret in Supabase, just like we did with Google.
+
+Then click on `SAVE` and you're ready to go.
+
+![GitHub New App](/images/blog/nextjs-supabase/gh-supabase-ready.png)
+
+
+## Introduce Supabase to Nextjs
+
+It will be the beginning of a long and fruitful relationship. <br/>
+Let`s begin by installing the Supabase client.
+
+<CodeWindow>
+```bash
+    pnpm add @supabase/supabase-js
+    pnpm add @supabase/ssr
+```
+</CodeWindow>
+
+You have to create a .env file in the root of the project with the following content:
+
+<CodeWindow title=".env">
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://<PROJECT_ID>.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<ANON_KEY>
+```
+</CodeWindow>
+> Replace `<PROJECT_ID>` and `<ANON_KEY>` with the values of your Supabase project.
+
+> Make sure to add the .env file to your .gitignore file. You don't want to expose your keys to the public.
+
+Now we will to create the Supabase client.
+
+Create a file `lib/supabase/client.ts` with the following content:
+
+<CodeWindow title="lib/supabase/client.ts">
+```TS
+import { createBrowserClient } from '@supabase/ssr'
+
+export function createClient() {
+    return createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    )
+}
+```
+</CodeWindow>
+
+This client will help us to interact with Supabase from the client side.
+
+Now we will create a context to share the session and the client with the rest of the app.
+
+create a file in /context/index.tsx with the following content:
+
+<CodeWindow title="context/index.tsx">
+```TS
+import {createClient} from "@/lib/supabase/client";
+import {createContext, ReactNode, useContext, useEffect, useState} from "react";
+import {Session, User} from "@supabase/supabase-js";
+
+type AuthContextType = {
+    user: User | null;
+    session: Session | null;
+    signIn: () => void;
+    signOut: () => void;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const AuthProvider = ({children}: { children: ReactNode }) => {
+    const [session, setSession] = useState<Session | null>(null);
+    const [user, setUser] = useState<User | null>(null);
+
+    const client = createClient();
+
+    useEffect(() => {
+        const {data: authListener} = client.auth.onAuthStateChange((event, session) => {
+            setSession(session);
+            setUser(session?.user ?? null);
+        });
+
+        return () => {
+            authListener?.unsubscribe();
+        }
+    }, []);
+
+    const signIn = async () => {
+        await client.auth.signIn({provider: 'github'});
+    }
+
+    const signOut = async () => {
+        await client.auth.signOut();
+    }
+
+    return (
+        <AuthContext.Provider value={{user, session, signIn, signOut}}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+export const useAuth = () => {
+    const context = useContext(AuthContext);
+    if (context === undefined) {
+        throw new Error('useAuth must be used within an AuthProvider');
+    }
+    return context;
+}
+```
+</CodeWindow>
+
+This context will help us to share the session and the user with the rest of the app.
+
+Now we will create a hook to use the session and the user in the components.
+
+Create a file in /hooks/useAuth.ts with the following content:
+
+<CodeWindow title="hooks/useAuth.ts">
+```TS
+import {useAuth} from "@/context";
+
+export const useSession = () => {
+    const {session} = useAuth();
+    return session;
+}
+
+export const useUser = () => {
+    const {user} = useAuth();
+    return user;
+}
+```
+</CodeWindow>
+
+This hook will help us to use the session and the user in the components.
+
+Now we will create a component to show the user information and the sign in and sign out buttons.
+
+Create a file in /components/UserInfo.tsx with the following content:
+
+<CodeWindow title="components/UserInfo.tsx">
+```TS
+
+import {useUser} from "@/hooks/useAuth";
+
+export const UserInfo = () => {
+    const user = useUser();
+
+    return (
+        <div className="flex items-center">
+            {user ? (
+                <>
+                    <img src={user.user_metadata.avatar_url} alt={user.user_metadata.full_name} className="w-8 h-8 rounded-full"/>
+                    <span className="ml-2">{user.user_metadata.full_name}</span>
+                </>
+            ) : (
+                <span>Not logged in</span>
+            )}
+        </div>
+    )
+}
+```
+</CodeWindow>
+
+
+WORK IN PROGRESS...
